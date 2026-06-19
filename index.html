@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Pages que Vendem — Dener Biersack</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #FF4D00;
+    --accent-dim: #cc3d00;
+    --accent-gradient: linear-gradient(135deg, #FF4D00 0%, #FF7A3D 100%);
+    --bg: #090909;
+    --surface: #111111;
+    --border: rgba(255,255,255,0.07);
+    --text: #F0F0F0;
+    --muted: rgba(240,240,240,0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(9,9,9,0.96), transparent);
+  }
+  .nav-logo {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.7;
+  }
+  .nav-cta {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 10px 24px;
+    border-radius: 1px;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    font-size: clamp(200px, 32vw, 400px);
+    font-weight: 200;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,77,0,0.06);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0.9;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  .hero-headline {
+    font-size: clamp(44px, 8vw, 108px);
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 860px;
+    margin-bottom: 24px;
+  }
+  .hero-headline strong {
+    font-weight: 600;
+    background: linear-gradient(135deg, #FF4D00 0%, #FF7A3D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.9;
+    margin-bottom: 36px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 1px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+  .btn-primary svg { transition: transform 0.2s; flex-shrink: 0; }
+  .btn-primary:hover svg { transform: translateX(4px); }
+
+  .hero-price-label {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .hero-price-label span {
+    display: block;
+    font-size: 28px;
+    font-weight: 200;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-top: 4px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+  }
+
+  /* PROVAS */
+  .proof-strip {
+    padding: 52px 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+  }
+  .proof-item {
+    padding: 0 32px 0 0;
+  }
+  .proof-num {
+    font-size: 42px;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .proof-num span { color: var(--accent); font-weight: 300; }
+  .proof-desc {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* O QUE INCLUI */
+  .includes {
+    padding: 88px 48px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 52px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0.9;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .include-item {
+    background: var(--bg);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .include-item:hover { background: var(--surface); }
+  .include-icon {
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: block;
+    color: var(--accent);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+  }
+  .include-title {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .include-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* CTA FINAL */
+  .cta-block {
+    padding: 112px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-block::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255,77,0,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-headline {
+    font-size: clamp(30px, 4.5vw, 56px);
+    font-weight: 200;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    max-width: 640px;
+    margin-bottom: 20px;
+  }
+  .cta-headline strong { font-weight: 600; background: linear-gradient(135deg, #FF4D00 0%, #FF7A3D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 52px;
+    max-width: 360px;
+    letter-spacing: 0.03em;
+    line-height: 1.9;
+  }
+  .cta-price-box {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .cta-from {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .cta-value {
+    font-size: 60px;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .cta-once {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+  footer p {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    nav { padding: 18px 24px; }
+    .hero { padding: 0 24px 72px; }
+    .hero-bg-text { font-size: 150px; right: -20px; }
+    .divider { margin: 0 24px; }
+    .proof-strip { padding: 44px 24px; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .proof-item { padding: 0; }
+    .includes { padding: 64px 24px; }
+    .cta-block { padding: 80px 24px; }
+    footer { padding: 28px 24px; align-items: center; }
+  }
+
+  /* ANIMATE */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.7s ease both 0.1s; }
+  .hero-headline { animation: fadeUp 0.8s ease both 0.25s; }
+  .hero-sub      { animation: fadeUp 0.8s ease both 0.4s; }
+  .hero-actions  { animation: fadeUp 0.8s ease both 0.55s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Dener Biersack</span>
+  <a href="https://wa.me/5551985402367?text=Quero%20minha%20landing%20page%20por%20R%24497" class="nav-cta" target="_blank" rel="noopener">Quero a minha →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text" aria-hidden="true">LP</div>
+
+  <p class="hero-eyebrow">Landing pages que fecham</p>
+
+  <h1 class="hero-headline">
+    Sua oferta merece<br>uma página que<br><strong>vende.</strong>
+  </h1>
+
+  <p class="hero-sub">
+    Você não precisa de mais tráfego. Precisa de uma página que converte quem já chegou. Design profissional, copy persuasiva, entregue em até 5 dias.
+  </p>
+
+  <div class="hero-actions">
+    <a
+      href="https://wa.me/5551985402367?text=Quero%20minha%20landing%20page%20por%20R%24497"
+      class="btn-primary"
+      target="_blank"
+      rel="noopener"
+    >
+      Garantir minha vaga
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <div class="hero-price-label">
+      Investimento único
+      <span>R$ 497<sup style="font-size:0.35em;font-weight:300;letter-spacing:0.05em;vertical-align:super;line-height:0">,00</sup></span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROVA SOCIAL -->
+<section class="proof-strip" aria-label="Números">
+  <div class="proof-item">
+    <p class="proof-num" id="counter-pages">0<span>+</span></p>
+    <p class="proof-desc">Páginas entregues</p>
+  </div>
+  <div class="proof-item">
+    <p class="proof-num">5<span> dias</span></p>
+    <p class="proof-desc">Prazo de entrega</p>
+  </div>
+  <div class="proof-item">
+    <p class="proof-num">100<span>%</span></p>
+    <p class="proof-desc">Mobile first</p>
+  </div>
+  <div class="proof-item">
+    <p class="proof-num">1<span>x</span></p>
+    <p class="proof-desc">Pagamento único</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- O QUE INCLUI -->
+<section class="includes">
+  <p class="section-label">O que você recebe</p>
+
+  <div class="includes-grid">
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">Design que para o scroll</h3>
+      <p class="include-desc">Visual premium feito para a sua oferta. Não é template, é identidade.</p>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">Copy persuasiva inclusa</h3>
+      <p class="include-desc">Texto pensado para converter. Título, benefícios, objeções e CTA.</p>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">100% responsivo</h3>
+      <p class="include-desc">Perfeito no celular, tablet e desktop. Onde seu cliente estiver.</p>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">Publicação incluída</h3>
+      <p class="include-desc">Subimos no ar pra você. Sem dor de cabeça com host ou domínio.</p>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">Pixel & rastreamento</h3>
+      <p class="include-desc">Meta Pixel, UTM e eventos configurados desde o primeiro dia.</p>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">✦</span>
+      <h3 class="include-title">Entrega em 5 dias</h3>
+      <p class="include-desc">Prazo real. Sem enrolação, sem "estamos finalizando faz 3 semanas".</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<section class="cta-block">
+  <h2 class="cta-headline">
+    Pronto pra ter uma página<br>que <strong>trabalha por você?</strong>
+  </h2>
+  <p class="cta-sub">Sem assinatura, sem surpresa. Você paga uma vez e a página é sua.</p>
+
+  <div class="cta-price-box">
+    <span class="cta-from">Por apenas</span>
+    <span class="cta-value">R$ 497<sup style="font-size:0.35em;font-weight:300;letter-spacing:0.05em;vertical-align:super;line-height:0">,00</sup></span>
+  </div>
+  <p class="cta-once">Pagamento único · Sem mensalidade</p>
+
+  <a
+    href="https://wa.me/5551985402367?text=Quero%20minha%20landing%20page%20por%20R%24497"
+    class="btn-primary"
+    target="_blank"
+    rel="noopener"
+    style="font-size:10px;padding:20px 52px;background:var(--accent-gradient)"
+  >
+    Falar agora no WhatsApp
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12.004 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.013 22l4.974-1.305A9.953 9.953 0 0 0 12.004 22C17.523 22 17.523 17.523 22 12S17.523 2 12.004 2zm0 18.105a8.084 8.084 0 0 1-4.122-1.131l-.295-.176-3.067.805.818-2.989-.192-.307A8.104 8.104 0 1 1 12.004 20.105z"/>
+    </svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Dener Biersack · Todos os direitos reservados</p>
+  <p>Atendimento via WhatsApp · DDD 51 · Rio Grande do Sul</p>
+</footer>
+
+<script>
+  function animateCounter(el, target, duration) {
+    let start = null;
+    const textNode = el.childNodes[0];
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      textNode.nodeValue = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const counterEl = document.getElementById('counter-pages');
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCounter(counterEl, 40, 1800);
+      observer.disconnect();
+    }
+  });
+  observer.observe(counterEl);
+</script>
+
+</body>
+</html>
