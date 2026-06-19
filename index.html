@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '36235388052773433');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=36235388052773433&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Landing Pages que Vendem — Dener Biersack</title>
@@ -400,7 +419,7 @@
 <!-- NAV -->
 <nav>
   <span class="nav-logo">Dener Biersack</span>
-  <a href="https://wa.me/5551994242581?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20contratar%20minha%20landing%20page%20por%20R%24%20497%2C00." class="nav-cta" target="_blank" rel="noopener">Quero a minha →</a>
+  <a href="https://wa.me/5551994242581?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20contratar%20minha%20landing%20page%20por%20R%24%20497%2C00." class="nav-cta" target="_blank" rel="noopener" onclick="fbq('track', 'Lead')">Quero a minha →</a>
 </nav>
 
 <!-- HERO -->
@@ -423,6 +442,7 @@
       class="btn-primary"
       target="_blank"
       rel="noopener"
+      onclick="fbq('track', 'Lead')"
     >
       Contratar agora
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -518,6 +538,7 @@
     class="btn-primary"
     target="_blank"
     rel="noopener"
+    onclick="fbq('track', 'Lead')"
     style="font-size:10px;padding:20px 52px;background:var(--accent-gradient)"
   >
     Falar agora no WhatsApp
